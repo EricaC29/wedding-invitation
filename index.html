@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>Wedding Invitation</title>
 
 <style>
@@ -10,54 +9,69 @@
 body{
 margin:0;
 font-family:Georgia, serif;
-background:#f6f2ea;
-text-align:center;
+background:#f4efe6;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
 }
 
 .envelope{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+position:relative;
+width:320px;
+height:220px;
+background:#efe7da;
+border-radius:6px;
 cursor:pointer;
+transition:transform 0.8s;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.flap{
+position:absolute;
+top:-110px;
+left:0;
+width:0;
+height:0;
+border-left:160px solid transparent;
+border-right:160px solid transparent;
+border-bottom:110px solid #e5dbc9;
+transform-origin:bottom;
+transition:transform 0.8s;
 }
 
 .seal{
-width:120px;
-height:120px;
-background:#b76e79;
+position:absolute;
+top:70px;
+left:50%;
+transform:translateX(-50%);
+width:70px;
+height:70px;
+background:#b35c5c;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
 color:white;
-font-size:40px;
-margin-bottom:20px;
+font-size:26px;
+font-weight:bold;
 }
 
-.content{
+.invitation{
 display:none;
-padding:30px;
-max-width:500px;
-margin:auto;
-}
-
-input, textarea{
+position:absolute;
+top:0;
+left:0;
 width:100%;
-padding:10px;
-margin:10px 0;
-border:1px solid #ddd;
-border-radius:5px;
+height:100%;
+background:white;
+padding:30px;
+overflow:auto;
 }
 
-button{
-background:#b76e79;
-color:white;
-padding:15px 30px;
-border:none;
-border-radius:8px;
-font-size:16px;
+h2{
+margin-top:0;
 }
 
 </style>
@@ -66,30 +80,28 @@ font-size:16px;
 
 <body>
 
-<div class="envelope" onclick="openInvite()">
+<div class="envelope" onclick="openEnvelope()">
+
+<div class="flap" id="flap"></div>
 
 <div class="seal">A</div>
 
-<h2>You are invited</h2>
+<div class="invitation" id="invite">
 
-<p>Tap to open</p>
-
-</div>
-
-<div class="content" id="invite">
-
-<h1>RSVP</h1>
+<h2>RSVP</h2>
 
 <label>Nume complet</label>
-<input type="text">
+<input type="text"><br><br>
 
 <label>Număr de telefon</label>
-<input type="text">
+<input type="text"><br><br>
 
 <h3>Veți fi însoțit(ă)?</h3>
 
 <input type="radio" name="plus"> Da
 <input type="radio" name="plus"> Nu
+
+<br><br>
 
 <label>Numele însoțitorului</label>
 <input type="text">
@@ -98,33 +110,42 @@ font-size:16px;
 
 <b>12 septembrie 2026 - The Wedding</b><br>
 
-<input type="radio" name="wedding"> Vom fi prezenți  
-<input type="radio" name="wedding"> Nu putem ajunge
+<input type="radio" name="wedding"> Cu drag vom fi prezenți  
+<input type="radio" name="wedding"> Din păcate nu putem ajunge
 
 <br><br>
 
 <b>13 septembrie 2026 - Brunch Party</b><br>
 
-<input type="radio" name="brunch"> Vom fi prezenți  
-<input type="radio" name="brunch"> Nu putem ajunge
+<input type="radio" name="brunch"> Cu drag vom fi prezenți  
+<input type="radio" name="brunch"> Din păcate nu putem ajunge
+
+<br><br>
 
 <label>Preferințe alimentare</label>
 
 <textarea></textarea>
 
-<br>
+<br><br>
 
 <button>Confirmă prezența</button>
 
 </div>
 
+</div>
+
 <script>
 
-function openInvite(){
+function openEnvelope(){
 
-document.querySelector(".envelope").style.display="none";
+document.getElementById("flap").style.transform="rotateX(180deg)";
 
+setTimeout(()=>{
+
+document.querySelector(".seal").style.display="none";
 document.getElementById("invite").style.display="block";
+
+},600);
 
 }
 
