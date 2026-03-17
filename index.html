@@ -1,107 +1,145 @@
-<!DOCTYPE html>
-<html>
+!DOCTYPE html>
+<html lang="ro">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Wedding Invitation</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Georgia, serif;
-background:#f4efe6;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+background:#eae4d8;
+font-family:Georgia,serif;
 overflow:hidden;
 }
 
+/* plic full screen */
+
 .envelope{
-position:relative;
-width:320px;
-height:220px;
-background:#efe7da;
-border-radius:6px;
+position:fixed;
+width:100%;
+height:100vh;
+background:#dfe3c8;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
 cursor:pointer;
-transition:transform 0.8s;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
+
+/* model floral ca in video */
+
+.envelope::before{
+content:"";
+position:absolute;
+inset:0;
+background-image:url("https://www.transparenttextures.com/patterns/floral-white.png");
+opacity:0.35;
+}
+
+/* clapeta */
 
 .flap{
 position:absolute;
-top:-110px;
-left:0;
-width:0;
-height:0;
-border-left:160px solid transparent;
-border-right:160px solid transparent;
-border-bottom:110px solid #e5dbc9;
-transform-origin:bottom;
-transition:transform 0.8s;
+top:0;
+width:100%;
+height:45vh;
+background:#cfd7a6;
+clip-path:polygon(0 0,100% 0,50% 100%);
+transform-origin:top;
+transition:1s;
 }
 
+/* sigiliu */
+
 .seal{
-position:absolute;
-top:70px;
-left:50%;
-transform:translateX(-50%);
-width:70px;
-height:70px;
-background:#b35c5c;
+position:relative;
+width:120px;
+height:120px;
 border-radius:50%;
+background:#c94242;
 display:flex;
 align-items:center;
 justify-content:center;
 color:white;
-font-size:26px;
-font-weight:bold;
+font-size:48px;
+box-shadow:0 10px 30px rgba(0,0,0,0.25);
+z-index:2;
 }
 
-.invitation{
-display:none;
-position:absolute;
+.text{
+position:relative;
+margin-top:30px;
+font-size:28px;
+color:#222;
+z-index:2;
+}
+
+/* invitația */
+
+.invite{
+position:fixed;
 top:0;
 left:0;
 width:100%;
-height:100%;
+height:100vh;
 background:white;
-padding:30px;
+display:none;
 overflow:auto;
+padding:40px;
+box-sizing:border-box;
 }
 
-h2{
-margin-top:0;
+input,textarea{
+width:100%;
+padding:10px;
+margin-top:6px;
+margin-bottom:20px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+button{
+padding:15px;
+width:100%;
+background:#c94242;
+border:none;
+color:white;
+font-size:18px;
+border-radius:8px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="envelope" onclick="openEnvelope()">
+<div class="envelope" onclick="openInvite()">
 
 <div class="flap" id="flap"></div>
 
 <div class="seal">A</div>
 
-<div class="invitation" id="invite">
+<div class="text">You are invited</div>
+
+</div>
+
+<div class="invite" id="invite">
 
 <h2>RSVP</h2>
 
 <label>Nume complet</label>
-<input type="text"><br><br>
+<input type="text">
 
 <label>Număr de telefon</label>
-<input type="text"><br><br>
+<input type="text">
 
 <h3>Veți fi însoțit(ă)?</h3>
 
-<input type="radio" name="plus"> Da
+<input type="radio" name="plus"> Da  
 <input type="radio" name="plus"> Nu
-
-<br><br>
 
 <label>Numele însoțitorului</label>
 <input type="text">
@@ -120,32 +158,23 @@ margin-top:0;
 <input type="radio" name="brunch"> Cu drag vom fi prezenți  
 <input type="radio" name="brunch"> Din păcate nu putem ajunge
 
-<br><br>
-
 <label>Preferințe alimentare</label>
-
 <textarea></textarea>
-
-<br><br>
 
 <button>Confirmă prezența</button>
 
 </div>
 
-</div>
-
 <script>
 
-function openEnvelope(){
+function openInvite(){
 
 document.getElementById("flap").style.transform="rotateX(180deg)";
 
 setTimeout(()=>{
-
-document.querySelector(".seal").style.display="none";
+document.querySelector(".envelope").style.display="none";
 document.getElementById("invite").style.display="block";
-
-},600);
+},700);
 
 }
 
