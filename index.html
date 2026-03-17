@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Wedding Invitation</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Georgia, serif;
+background:#f6f2ea;
+text-align:center;
+}
+
+.envelope{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+}
+
+.seal{
+width:120px;
+height:120px;
+background:#b76e79;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:40px;
+margin-bottom:20px;
+}
+
+.content{
+display:none;
+padding:30px;
+max-width:500px;
+margin:auto;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:5px;
+}
+
+button{
+background:#b76e79;
+color:white;
+padding:15px 30px;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="envelope" onclick="openInvite()">
+
+<div class="seal">A</div>
+
+<h2>You are invited</h2>
+
+<p>Tap to open</p>
+
+</div>
+
+<div class="content" id="invite">
+
+<h1>RSVP</h1>
+
+<label>Nume complet</label>
+<input type="text">
+
+<label>Număr de telefon</label>
+<input type="text">
+
+<h3>Veți fi însoțit(ă)?</h3>
+
+<input type="radio" name="plus"> Da
+<input type="radio" name="plus"> Nu
+
+<label>Numele însoțitorului</label>
+<input type="text">
+
+<h3>Confirmare participare</h3>
+
+<b>12 septembrie 2026 - The Wedding</b><br>
+
+<input type="radio" name="wedding"> Vom fi prezenți  
+<input type="radio" name="wedding"> Nu putem ajunge
+
+<br><br>
+
+<b>13 septembrie 2026 - Brunch Party</b><br>
+
+<input type="radio" name="brunch"> Vom fi prezenți  
+<input type="radio" name="brunch"> Nu putem ajunge
+
+<label>Preferințe alimentare</label>
+
+<textarea></textarea>
+
+<br>
+
+<button>Confirmă prezența</button>
+
+</div>
+
+<script>
+
+function openInvite(){
+
+document.querySelector(".envelope").style.display="none";
+
+document.getElementById("invite").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
